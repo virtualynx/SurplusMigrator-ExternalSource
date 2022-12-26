@@ -1,4 +1,4 @@
-DROP MATERIALIZED VIEW IF EXISTS view_master_eis;
+DROP MATERIALIZED VIEW IF EXISTS view_master_eis CASCADE;
 
 CREATE MATERIALIZED VIEW view_master_eis AS
 	SELECT 
@@ -9,6 +9,8 @@ CREATE MATERIALIZED VIEW view_master_eis AS
 	    "management_level",
 	    position_id,
 	    department_id,
+	    division_id,
+	    directorate_id,
 	    phone,
 	    npwp,
 	    birth_date,
@@ -32,6 +34,8 @@ CREATE MATERIALIZED VIEW view_master_eis AS
 				"ManajemenLevel" as management_level,
 				"KodePosisi" as position_id,
 				"department_code",
+				"division_code",
+				"directorate_code",
 				"NomorHP",
 				"NPWP",
 				"TanggalLahir",
@@ -54,6 +58,8 @@ CREATE MATERIALIZED VIEW view_master_eis AS
 		"management_level" character varying(30),
 		position_id character varying(50),
 		department_id character varying(50),
+		division_id character varying(50),
+		directorate_id character varying(50),
 		phone character varying(25),
 		npwp character varying(50),
 		birth_date date,
@@ -68,3 +74,16 @@ CREATE MATERIALIZED VIEW view_master_eis AS
 		phk_code int
 	)
 WITH DATA;
+
+DROP VIEW IF EXISTS view_master_eis_active;
+
+CREATE VIEW view_master_eis_active AS
+	SELECT 
+		*
+	FROM 
+		view_master_eis
+	where 
+		(phk_date IS NULL) 
+		AND (phk_code IS NULL) 
+		OR (phk_date > (current_date - INTERVAL '1 day')::date)
+;

@@ -28,3 +28,15 @@ from
 		active boolean
 	)
 ;
+
+insert into master_sales_area(
+	salesareaid,
+	name,
+	description,
+	is_disabled
+) VALUES (
+	0,
+	'Unknown',
+	'To satisfy null reference on transaction_sales_order migrated data',
+	false
+);
