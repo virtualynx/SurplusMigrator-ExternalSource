@@ -6,7 +6,7 @@ insert into "AspNetUsers"(
 	departmentid,
 	isdisabled,
 	occupationid,
-	modulegroupid,
+	usergroupid,
 	emailconfirmed,
 	phonenumberconfirmed,
 	twofactorenabled,
