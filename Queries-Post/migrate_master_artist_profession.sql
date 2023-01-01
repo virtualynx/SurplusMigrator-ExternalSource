@@ -14,7 +14,7 @@ from
 		'dbname=integration port=5432 host=172.16.123.121 user=postgres password=initrans7'::text, 
 		'
 			SELECT 
-				code
+				code,
 				name, 
 				note,
 				active
