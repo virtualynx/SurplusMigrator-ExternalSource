@@ -63,9 +63,4 @@ from
 		email character varying(200), 
 		phone character varying(25)
 	)
---where
---	master_eis.nik in (
-----		'22037', '0706392', '0908302'
---		'2107862'
---	)
 ;
