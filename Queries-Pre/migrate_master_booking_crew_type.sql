@@ -29,8 +29,8 @@ from
 	)
 ;
 
-ALTER SEQUENCE 
-	master_booking_crew_type_bookingcrewtypeid_seq 
-RESTART WITH (
-	select max(bookingcrewtypeid) from master_booking_crew_type
+SELECT setval(
+	'master_booking_crew_type_bookingcrewtypeid_seq',
+	(select max(bookingcrewtypeid) from master_booking_crew_type), 
+	true
 );

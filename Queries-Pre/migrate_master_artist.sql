@@ -25,12 +25,6 @@ from
 	)
 ;
 
-ALTER SEQUENCE 
-	master_artist_type_artisttypeid_seq 
-RESTART WITH (
-	select max(artisttypeid) from master_artist_type
-);
-
 insert into master_artist(
 	artistid,
 	name,

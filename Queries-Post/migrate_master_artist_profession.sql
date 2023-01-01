@@ -29,8 +29,8 @@ from
 	)
 ;
 
-ALTER SEQUENCE 
-	master_artist_profession_artistprofessionid_seq 
-RESTART WITH (
-	select max(artistprofessionid) from master_artist_profession
+SELECT setval(
+	'master_artist_profession_artistprofessionid_seq',
+	(select max(artistprofessionid) from master_artist_profession), 
+	true
 );
