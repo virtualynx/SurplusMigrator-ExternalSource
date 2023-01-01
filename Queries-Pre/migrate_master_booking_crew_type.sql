@@ -28,3 +28,9 @@ from
 		crewequipment_type_days int
 	)
 ;
+
+ALTER SEQUENCE 
+	master_booking_crew_type_bookingcrewtypeid_seq 
+RESTART WITH (
+	select max(bookingcrewtypeid) from master_booking_crew_type
+);
