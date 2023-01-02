@@ -1,3 +1,4 @@
+DROP VIEW IF EXISTS view_updateposttx;
 DROP FOREIGN TABLE IF EXISTS mg_channel;
 
 CREATE FOREIGN TABLE mg_channel (
