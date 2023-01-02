@@ -1,6 +1,6 @@
-DROP FOREIGN TABLE IF EXISTS tt_mo1;
+DROP FOREIGN TABLE IF EXISTS tt_mo2;
 
-CREATE FOREIGN TABLE tt_mo1 (
+CREATE FOREIGN TABLE tt_mo2 (
 	row_id_spot varchar(18) OPTIONS(key 'true') NOT NULL,
 	tx_time varchar(11) NULL,
 	prod_code varchar(20) NULL,
