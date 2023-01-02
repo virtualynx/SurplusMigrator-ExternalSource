@@ -14,7 +14,14 @@ CREATE VIEW view_contractform AS
 		end_date,
 		total_episode,
 		remuneration,
-		created_by
+		created_by,
+		contractform_isapproved as "is_approved",
+		contractform_isapprovedlegal as "is_approved_legal",
+		contractform_isregent as is_regent,
+		contractform_dealprice as dealprice,
+		worktype_id,
+		worktype_name,
+		contractform_bank_accountnumber as bankacc_number
 	FROM 
 		dblink(
 			'dbname=integration port=5432 host=172.16.123.121 user=postgres password=initrans7'::text, 
@@ -32,7 +39,14 @@ CREATE VIEW view_contractform AS
 					contractform_shooting_enddate,
 					contractform_episode_total,
 					contractform_totalprice,
-					created_by
+					created_by,
+					contractform_isapproved,
+					contractform_isapprovedlegal,
+					contractform_isregent,
+					contractform_dealprice,
+					worktype.worktype_id,
+					worktype.worktype_name,
+					contractform_bank_accountnumber
 				FROM 
 					e_legal.transaction_contractform tcontract
 					join e_legal.master_worktype worktype on tcontract.worktype_id = worktype.worktype_id
@@ -51,7 +65,14 @@ CREATE VIEW view_contractform AS
 			end_date timestamp,
 			total_episode int4,
 			remuneration numeric,
-			created_by varchar(255)
+			created_by varchar(255),
+			contractform_isapproved bool,
+			contractform_isapprovedlegal bool,
+			contractform_isregent bool,
+			contractform_dealprice numeric,
+			worktype_id int,
+			worktype_name varchar(255),
+			contractform_bank_accountnumber varchar(100)
 		)
 ;
 
