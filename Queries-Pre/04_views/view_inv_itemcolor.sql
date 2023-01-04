@@ -10,7 +10,7 @@ CREATE VIEW view_inv_itemcolor AS
 			'dbname=integration port=5432 host=172.16.123.121 user=postgres password=initrans7'::text, 
 			'
 				SELECT 
-					color_id, 
+					TRIM(color_id), 
 					color_name, 
 					color_isdisabled
 				FROM 

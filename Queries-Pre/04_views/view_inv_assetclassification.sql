@@ -10,7 +10,7 @@ CREATE VIEW view_inv_assetclassification AS
 			'dbname=integration port=5432 host=172.16.123.121 user=postgres password=initrans7'::text, 
 			'
 				SELECT 
-					assetclassification_id, 
+					TRIM(assetclassification_id), 
 					assetclassification_name,
 					assetclassification_isdisabled
 				FROM inventory.master_assetclassification 

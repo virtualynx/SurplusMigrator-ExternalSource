@@ -10,7 +10,7 @@ CREATE VIEW view_inv_itembrand AS
 			'dbname=integration port=5432 host=172.16.123.121 user=postgres password=initrans7'::text, 
 			'
 				SELECT 
-					brand_id, 
+					TRIM(brand_id), 
 					brand_name,
 					brand_isdisabled
 				FROM inventory.master_brand 

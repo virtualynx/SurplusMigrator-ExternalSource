@@ -9,7 +9,7 @@ CREATE VIEW view_inv_itemgender AS
 			'dbname=integration port=5432 host=172.16.123.121 user=postgres password=initrans7'::text, 
 			'
 				SELECT 
-					gender_id, 
+					TRIM(gender_id), 
 					gender_name
 				FROM 
 					inventory.master_gender

@@ -12,8 +12,8 @@ CREATE VIEW view_inv_itemcategory AS
 		'
 			SELECT 
 				itemcategory_id, 
-				itemcategory_name,
-				department_id,
+				TRIM(itemcategory_name),
+				TRIM(department_id),
 				itemcategory_isdisabled,
 				itemcategory_issupplyitem
 			FROM 
