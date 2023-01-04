@@ -43,7 +43,7 @@ CREATE VIEW view_sa_tax AS
 		A.periodid
 	FROM         
 		transaction_journal AS A 
-		INNER join transaction_journal_tax AS R ON A.tjournalid = R.tjournaltaxid  
+		INNER join transaction_journal_tax AS R ON A.tjournalid = R.tjournalid  
 		INNER join master_vendor AS II ON A.vendorid = II.vendorid
 	WHERE 
 		A.is_disabled = false
