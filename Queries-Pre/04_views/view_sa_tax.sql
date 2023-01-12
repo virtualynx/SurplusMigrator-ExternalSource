@@ -32,14 +32,14 @@ CREATE VIEW view_sa_tax AS
 		) AS ALAMAT_LENGKAP, 
 		R.dasarpengenaan AS JUMLAH_DPP, 
 		R.ppnamount AS JUMLAH_PPN, 
-		0 AS JUMLAH_PPNBM, 
+		0::numeric AS JUMLAH_PPNBM, 
 		'' AS ID_KETERANGAN_TAMBAHAN, 
-		0 AS FG_UANG_MUKA, 
-		0 AS UANG_MUKA_DPP, 
-		0 AS UANG_MUKA_PPN, 
-		0 AS UANG_MUKA_PPNBM, 
-		A.tjournalid AS REFERENSI, 
-		A.created_by,   
+		0::numeric AS FG_UANG_MUKA, 
+		0::numeric AS UANG_MUKA_DPP, 
+		0::numeric AS UANG_MUKA_PPN, 
+		0::numeric AS UANG_MUKA_PPNBM, 
+		A.tjournalid AS REFERENSI,  
+		(A.created_by->>'FullName') as created_by, 
 		A.periodid
 	FROM         
 		transaction_journal AS A 
