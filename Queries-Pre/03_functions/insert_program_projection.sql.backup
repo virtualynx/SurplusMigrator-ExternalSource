@@ -3,7 +3,7 @@ select
 	tvprogramname,
 	created_date 
 from
-	migrate_temp."transaction_program_Budget" tpb 
+	migrate_temp."transaction_program_budget" tpb 
 where 
 	1=1
 --	and tvprogramid not like '0%' 

@@ -1,0 +1,284 @@
+{
+	"mapping":[
+		{
+			"id": "TRANS7",
+			"name": "TRANS7"
+		},
+		{
+			"id": "BOC",
+			"name": "BOC"
+		},
+		{
+			"id": "FRM",
+			"name": "FINANCE & RESOURCES MGT. DIRECTORATE"
+		},
+		{
+			"id": "FINDIV",
+			"name": "FINANCE DIVISION"
+		},
+		{
+			"id": "AR",
+			"name": "A/R MANAGEMENT DEPARTMENT"
+		},
+		{
+			"id": "ACC",
+			"name": "ACCOUNTING DEPARTMENT"
+		},
+		{
+			"id": "FINDEPT",
+			"name": "FINANCE DEPARTMENT"
+		},
+		{
+			"id": "HRGS",
+			"name": "HR & GS DIVISION"
+		},
+		{
+			"id": "GSBEN",
+			"name": "GS & BUILD. ENG. DEPARTMENT"
+		},
+		{
+			"id": "HRD",
+			"name": "HR DEVELOPMENT DEPARTMENT"
+		},
+		{
+			"id": "HRO",
+			"name": "HR OPERATIONS DEPARTMENT"
+		},
+		{
+			"id": "MAG",
+			"name": "MAGAZINE & INFORMATION DIRECTORATE"
+		},
+		{
+			"id": "MAGDIV",
+			"name": "MAGAZINE & INFORMATION DIVISION"
+		},
+		{
+			"id": "MAGDEPT2",
+			"name": "MAGAZINE & INFORMATION II DEPARTMENT"
+		},
+		{
+			"id": "MAGDEPT1",
+			"name": "MAGAZINE & INFORMATION I DEPARTMENT"
+		},
+		{
+			"id": "MAGDOC",
+			"name": "MAGAZINE & DOCUMENTARY DEPARTMENT"
+		},
+		{
+			"id": "MAGSUP",
+			"name": "MAGAZINE & INFORMATION SUPPORT"
+		},
+		{
+			"id": "MAGRND",
+			"name": "MAGAZINE & INFORMATION R&D"
+		},
+		{
+			"id": "PROD",
+			"name": "PRODUCTION DIRECTORATE"
+		},
+		{
+			"id": "PRODDIV",
+			"name": "PRODUCTION DIVISION"
+		},
+		{
+			"id": "PRODDEPT1",
+			"name": "PRODUCTION I DEPARTMENT"
+		},
+		{
+			"id": "PRODDEPT2",
+			"name": "PRODUCTION II DEPARTMENT"
+		},
+		{
+			"id": "PRODDEPT3",
+			"name": "PRODUCTION III DEPARTMENT"
+		},
+		{
+			"id": "PRODOPS",
+			"name": "PRODUCTION OPERATIONS DEPARTMENT"
+		},
+		{
+			"id": "PRODFC",
+			"name": "PROD. FACILITIES DIVISION"
+		},
+		{
+			"id": "ART",
+			"name": "ART DEPARTMENT"
+		},
+		{
+			"id": "FCS",
+			"name": "FACILITIES SERVICES DEPARTMENT"
+		},
+		{
+			"id": "PRODSERV",
+			"name": "PROD.SERVICES DEPARTMENT"
+		},
+		{
+			"id": "TRM",
+			"name": "TRANSMISSION DEPARTMENT"
+		},
+		{
+			"id": "IT",
+			"name": "INFORMATION TECHNOLOGY DEPARTMENT"
+		},
+		{
+			"id": "PROG",
+			"name": "PROGRAMMING DIRECTORATE"
+		},
+		{
+			"id": "PROGDIV",
+			"name": "PROGRAMMING DIVISION"
+		},
+		{
+			"id": "PROGOPS",
+			"name": "PROGRAM OPERATIONS DEPARTMENT"
+		},
+		{
+			"id": "PROGRND",
+			"name": "RSCH & DEV DEPARTMENT"
+		},
+		{
+			"id": "PROGSCH",
+			"name": "PROG.PLAN&SCH DEPARTMENT"
+		},
+		{
+			"id": "MARDIV",
+			"name": "MARKETING DIVISION"
+		},
+		{
+			"id": "TRF",
+			"name": "COMM. TRAFFIC DEPARTMENT"
+		},
+		{
+			"id": "MARPNR",
+			"name": "MARKETING PLANNING & REASERCH DEPARTMENT"
+		},
+		{
+			"id": "MARSPH",
+			"name": "MARKETING SPONSORSHIP DEPARTMENT"
+		},
+		{
+			"id": "MARPR",
+			"name": "MARKETING PUBLIC RELATIONS DIVISION"
+		},
+		{
+			"id": "PR",
+			"name": "PUBLIC RELATIONS DEPARTMENT"
+		},
+		{
+			"id": "MAROFFAIR",
+			"name": "MARKETING OFF-AIR DEPARTMENT"
+		},
+		{
+			"id": "PROMODIV",
+			"name": "PROMOTION DIVISION"
+		},
+		{
+			"id": "COMGRPH",
+			"name": "COM. GRP. PROGRAM DEPARTMENT"
+		},
+		{
+			"id": "PROMODEPT",
+			"name": "PROMOTION DEPARTMENT"
+		},
+		{
+			"id": "SALES",
+			"name": "SALES & MARKETING DIRECTORATE"
+		},
+		{
+			"id": "SALESDIV1",
+			"name": "SALES I DIVISION"
+		},
+		{
+			"id": "SALESDIV1DEPT1",
+			"name": "SALES I DIV SALES I DEPT"
+		},
+		{
+			"id": "SALESDIV1DEPT2",
+			"name": "SALES I DIV SALES II DEPT"
+		},
+		{
+			"id": "SALESDIV1DEPT3",
+			"name": "SALES I DIV SALES III DEPT"
+		},
+		{
+			"id": "SALESDIV2",
+			"name": "SALES II DIVISION"
+		},
+		{
+			"id": "SALESDIV2DEPT1",
+			"name": "SALES II DIV SALES I DEPT"
+		},
+		{
+			"id": "SALESDIV2DEPT2",
+			"name": "SALES II DIV SALES II DEPT"
+		},
+		{
+			"id": "SALESDIV2DEPT3",
+			"name": "SALES II DIV SALES III DEPT"
+		},
+		{
+			"id": "SALESDIV3",
+			"name": "SALES III DIVISION"
+		},
+		{
+			"id": "SALESDIV3DEPT1",
+			"name": "SALES III DIV SALES I DEPT"
+		},
+		{
+			"id": "SALESDIV3DEPT2",
+			"name": "SALES III DIV SALES II DEPT"
+		},
+		{
+			"id": "SALESDIV3DEPT3",
+			"name": "SALES III DIV SALES III DEPT"
+		},
+		{
+			"id": "CORPFUNC",
+			"name": "CORPORATE FUNCTION"
+		},
+		{
+			"id": "COMPLIANCE",
+			"name": "COMPLIANCE&INTERNAL AUDIT"
+		},
+		{
+			"id": "LGL",
+			"name": "LEGAL"
+		},
+		{
+			"id": "PROC",
+			"name": "PROCUREMENT"
+		},
+		{
+			"id": "OUTSOURCE",
+			"name": "OUTSOURCING"
+		},
+		{
+			"id": "DHQ2",
+			"name": "DIGITAL HEAD QUARTER"
+		},
+		{
+			"id": "DHQ1",
+			"name": "DIGITAL HEADQUARTER"
+		},
+		{
+			"id": "ARTDIR",
+			"name": "ART DIRECTOR"
+		},
+		{
+			"id": "PCM",
+			"name": "PROGRAM COST MANAGEMENT"
+		},
+		{
+			"id": "CONSULTANT",
+			"name": "CONSULTANT"
+		},
+		{
+			"id": "NMEDIA",
+			"name": "NEW MEDIA"
+		},
+		{
+			"id": "BPM",
+			"name": "BUSINESS PROCESS MANAGEMENT"
+		}
+	]
+}
