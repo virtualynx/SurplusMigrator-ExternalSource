@@ -3,7 +3,9 @@ DROP MATERIALIZED VIEW IF EXISTS view_master_advertiser_temp;
 CREATE materialized VIEW view_master_advertiser_temp as
 	SELECT 
 		mc.client_code AS advertiserid,
-    	mc.client_com_name AS name
+    	mc.client_com_name AS name,
+    	NULL AS agency_id,
+    	NULL AS agency_name
    	FROM 
    		dblink(
    			'dbname=integration port=5432 host=172.16.123.121 user=postgres password=initrans7 ', 

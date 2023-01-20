@@ -1,0 +1,243 @@
+{
+"relation_hris_inventory_department": [
+	{
+		"hris_id" : "ACC",
+		"inventory_id" : "ACC",
+		"inventory_name" : "ACCOUNTING DEPARTMENT"
+	},
+	{
+		"hris_id" : "ACC",
+		"inventory_id" : "BMA",
+		"inventory_name" : "BUDGET MANAGEMENT ACCOUNTING"
+	},
+	{
+		"hris_id" : "AR",
+		"inventory_id" : "ACC",
+		"inventory_name" : "ACCOUNTING DEPARTMENT"
+	},
+	{
+		"hris_id" : "ART",
+		"inventory_id" : "ARP",
+		"inventory_name" : "ART PROPERTY"
+	},
+	{
+		"hris_id" : "ART",
+		"inventory_id" : "ART",
+		"inventory_name" : "ART DEPARTMENT"
+	},
+	{
+		"hris_id" : "ART",
+		"inventory_id" : "ARW",
+		"inventory_name" : "WARDROBE"
+	},
+	{
+		"hris_id" : "BPM",
+		"inventory_id" : "BPM",
+		"inventory_name" : "BUSINESS PROCESS MANAGEMENT"
+	},
+	{
+		"hris_id" : "COMGRPH",
+		"inventory_id" : "CTR",
+		"inventory_name" : "COMMERCIAL TRAFFIC DEPARTMENT"
+	},
+	{
+		"hris_id" : "COMPLIANCE",
+		"inventory_id" : "BPM",
+		"inventory_name" : "BUSINESS PROCESS MANAGEMENT"
+	},
+	{
+		"hris_id" : "FCS",
+		"inventory_id" : "TOA",
+		"inventory_name" : "TECHNICAL ON AIR DEPARTMENT"
+	},
+	{
+		"hris_id" : "FCS",
+		"inventory_id" : "TSV",
+		"inventory_name" : "TECHNICAL SERVICES DEPARTMENT"
+	},
+	{
+		"hris_id" : "FINDEPT",
+		"inventory_id" : "FHR",
+		"inventory_name" : "FINANCE & HUMAN RESOURCES DIRECTOR"
+	},
+	{
+		"hris_id" : "FINDEPT",
+		"inventory_id" : "FNC",
+		"inventory_name" : "FINANCE DEPARTMENT"
+	},
+	{
+		"hris_id" : "GSBEN",
+		"inventory_id" : "BEN",
+		"inventory_name" : "BUILDING ENGINEERING DEPARTMENT"
+	},
+	{
+		"hris_id" : "GSBEN",
+		"inventory_id" : "GSV",
+		"inventory_name" : "GENERAL SERVICES DEPARTMENT"
+	},
+	{
+		"hris_id" : "HRD",
+		"inventory_id" : "FHR",
+		"inventory_name" : "FINANCE & HUMAN RESOURCES DIRECTOR"
+	},
+	{
+		"hris_id" : "HRO",
+		"inventory_id" : "HCO",
+		"inventory_name" : "HUMAN CAPITAL OPERATION DEPARTMENT"
+	},
+	{
+		"hris_id" : "IT",
+		"inventory_id" : "ITE",
+		"inventory_name" : "IT DEPARTMENT"
+	},
+	{
+		"hris_id" : "LGL",
+		"inventory_id" : "LEG",
+		"inventory_name" : "LEGAL"
+	},
+	{
+		"hris_id" : "MAGDEPT1",
+		"inventory_id" : "NWS",
+		"inventory_name" : "NEWS"
+	},
+	{
+		"hris_id" : "MAGDEPT2",
+		"inventory_id" : "NWS",
+		"inventory_name" : "NEWS"
+	},
+	{
+		"hris_id" : "MAGDIV",
+		"inventory_id" : "MDO",
+		"inventory_name" : "MAGAZINE & DOCUMENTARY DEPARTMENT"
+	},
+	{
+		"hris_id" : "MAGSUP",
+		"inventory_id" : "NWS",
+		"inventory_name" : "NEWS"
+	},
+	{
+		"hris_id" : "MARPR",
+		"inventory_id" : "PRE",
+		"inventory_name" : "PUBLIC RELATION"
+	},
+	{
+		"hris_id" : "PR",
+		"inventory_id" : "PRE",
+		"inventory_name" : "PUBLIC RELATION"
+	},
+	{
+		"hris_id" : "PROC",
+		"inventory_id" : "PRO",
+		"inventory_name" : "PROCUREMENT"
+	},
+	{
+		"hris_id" : "PRODDEPT1",
+		"inventory_id" : "PRD",
+		"inventory_name" : "PRODUCTION"
+	},
+	{
+		"hris_id" : "PRODDEPT2",
+		"inventory_id" : "PRD",
+		"inventory_name" : "PRODUCTION"
+	},
+	{
+		"hris_id" : "PRODDEPT3",
+		"inventory_id" : "PRD",
+		"inventory_name" : "PRODUCTION"
+	},
+	{
+		"hris_id" : "PRODOPS",
+		"inventory_id" : "OPR",
+		"inventory_name" : "OPERATIONS DEPARTMENT"
+	},
+	{
+		"hris_id" : "PRODOPS",
+		"inventory_id" : "PRD",
+		"inventory_name" : "PRODUCTION"
+	},
+	{
+		"hris_id" : "PRODSERV",
+		"inventory_id" : "PSV",
+		"inventory_name" : "PRODUCTION SERVICES DEPARTMENT"
+	},
+	{
+		"hris_id" : "PROGOPS",
+		"inventory_id" : "POV",
+		"inventory_name" : "PROGRAM OPERATION"
+	},
+	{
+		"hris_id" : "PROGRND",
+		"inventory_id" : "POV",
+		"inventory_name" : "PROGRAM OPERATION"
+	},
+	{
+		"hris_id" : "PROGSCH",
+		"inventory_id" : "POV",
+		"inventory_name" : "PROGRAM OPERATION"
+	},
+	{
+		"hris_id" : "PROMODEPT",
+		"inventory_id" : "PRM",
+		"inventory_name" : "PROMOTION DEPARTMENT"
+	},
+	{
+		"hris_id" : "SALESDIV1DEPT1",
+		"inventory_id" : "SLS",
+		"inventory_name" : "SALES DEPARTEMENT"
+	},
+	{
+		"hris_id" : "SALESDIV1DEPT2",
+		"inventory_id" : "SLS",
+		"inventory_name" : "SALES DEPARTEMENT"
+	},
+	{
+		"hris_id" : "SALESDIV1DEPT3",
+		"inventory_id" : "SLS",
+		"inventory_name" : "SALES DEPARTEMENT"
+	},
+	{
+		"hris_id" : "SALESDIV2DEPT1",
+		"inventory_id" : "SLS",
+		"inventory_name" : "SALES DEPARTEMENT"
+	},
+	{
+		"hris_id" : "SALESDIV2DEPT2",
+		"inventory_id" : "SLS",
+		"inventory_name" : "SALES DEPARTEMENT"
+	},
+	{
+		"hris_id" : "SALESDIV2DEPT3",
+		"inventory_id" : "SLS",
+		"inventory_name" : "SALES DEPARTEMENT"
+	},
+	{
+		"hris_id" : "SALESDIV3DEPT1",
+		"inventory_id" : "SLS",
+		"inventory_name" : "SALES DEPARTEMENT"
+	},
+	{
+		"hris_id" : "SALESDIV3DEPT2",
+		"inventory_id" : "SLS",
+		"inventory_name" : "SALES DEPARTEMENT"
+	},
+	{
+		"hris_id" : "SALESDIV3DEPT3",
+		"inventory_id" : "SLS",
+		"inventory_name" : "SALES DEPARTEMENT"
+	},
+	{
+		"hris_id" : "TRF",
+		"inventory_id" : "CTR",
+		"inventory_name" : "COMMERCIAL TRAFFIC DEPARTMENT"
+	},
+	{
+		"hris_id" : "TRM",
+		"inventory_id" : "TRM",
+		"inventory_name" : "TRANSMISSION DEPARTMENT"
+	},
+	{
+		"hris_id" : "TV7<mapping not found>",
+		"inventory_id" : "TV7",
+		"inventory_name" : "TV7"
+	}
+]}
