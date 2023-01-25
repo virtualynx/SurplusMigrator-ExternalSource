@@ -8,7 +8,7 @@ BEGIN
 	select 
 		smp1.prod_version_name
   	into ls_ver_name
-	from mt_prod1 smp1
+	from <schema>.mt_prod1 smp1
 	where 
 		smp1.prod_code  = p_prod_code
 	  	and smp1.prod_version = p_version;

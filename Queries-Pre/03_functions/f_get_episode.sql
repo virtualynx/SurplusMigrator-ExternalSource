@@ -10,51 +10,51 @@ declare
 	ls_prevepiName 		text := '';
 	vReturn				text := '';
 	lc_Episode_n 		cursor for
-					   		SELECT DISTINCT TP_ADNL_EPI_PLAN.epi_no
+					   		SELECT DISTINCT <schema>.TP_ADNL_EPI_PLAN.epi_no
 					  		FROM 
-					  			TP_ADNL_EPI_PLAN,
-					       		PUR_EPISODE_HDR,
-					       		PURCHASE_CONTRACT_HDR
+					  			<schema>.TP_ADNL_EPI_PLAN,
+					       		<schema>.PUR_EPISODE_HDR,
+					       		<schema>.PURCHASE_CONTRACT_HDR
 					   		WHERE 
-					   			( TP_ADNL_EPI_PLAN.row_id_epi       = PUR_EPISODE_HDR.row_id ) AND
-					      		( TP_ADNL_EPI_PLAN.revision_no      = PUR_EPISODE_HDR.revision_no ) AND
-					            ( PUR_EPISODE_HDR.pur_contract_no   = PURCHASE_CONTRACT_HDR.pur_contract_no ) AND
-					      		( PUR_EPISODE_HDR.revision_no    = PURCHASE_CONTRACT_HDR.revision_no ) AND
-					            ( TP_ADNL_EPI_PLAN.row_id_slot    = vRowIdSlot ) AND
-					      		( TP_ADNL_EPI_PLAN.CHANNEL_CODE    = vChannelCode ) AND
-					      		( TP_ADNL_EPI_PLAN.CBS_DATE    = TO_DATE(vCbsDate, 'YYYYMMDD'));
+					   			( <schema>.TP_ADNL_EPI_PLAN.row_id_epi       = <schema>.PUR_EPISODE_HDR.row_id ) AND
+					      		( <schema>.TP_ADNL_EPI_PLAN.revision_no      = <schema>.PUR_EPISODE_HDR.revision_no ) AND
+					            ( <schema>.PUR_EPISODE_HDR.pur_contract_no   = <schema>.PURCHASE_CONTRACT_HDR.pur_contract_no ) AND
+					      		( <schema>.PUR_EPISODE_HDR.revision_no    = <schema>.PURCHASE_CONTRACT_HDR.revision_no ) AND
+					            ( <schema>.TP_ADNL_EPI_PLAN.row_id_slot    = vRowIdSlot ) AND
+					      		( <schema>.TP_ADNL_EPI_PLAN.CHANNEL_CODE    = vChannelCode ) AND
+					      		( <schema>.TP_ADNL_EPI_PLAN.CBS_DATE    = TO_DATE(vCbsDate, 'YYYYMMDD'));
 	lc_Episode_2 		cursor for
 							SELECT 
-								DISTINCT PUR_EPISODE_HDR.FILM_EPI_TITLE, 
-								TP_ADNL_EPI_PLAN.epi_no
+								DISTINCT <schema>.PUR_EPISODE_HDR.FILM_EPI_TITLE, 
+								<schema>.TP_ADNL_EPI_PLAN.epi_no
 							FROM 
-								TP_ADNL_EPI_PLAN,
-							   	PUR_EPISODE_HDR,
-							   	PURCHASE_CONTRACT_HDR
+								<schema>.TP_ADNL_EPI_PLAN,
+							   	<schema>.PUR_EPISODE_HDR,
+							   	<schema>.PURCHASE_CONTRACT_HDR
 							WHERE 
-								( TP_ADNL_EPI_PLAN.row_id_epi       = PUR_EPISODE_HDR.row_id ) AND
-								( TP_ADNL_EPI_PLAN.revision_no      = PUR_EPISODE_HDR.revision_no ) AND
-								( PUR_EPISODE_HDR.pur_contract_no   = PURCHASE_CONTRACT_HDR.pur_contract_no ) AND
-								( PUR_EPISODE_HDR.revision_no    = PURCHASE_CONTRACT_HDR.revision_no ) AND
-								( TP_ADNL_EPI_PLAN.row_id_slot    = vRowIdSlot ) AND
-								( TP_ADNL_EPI_PLAN.CHANNEL_CODE    = vChannelCode ) AND
-								( TP_ADNL_EPI_PLAN.CBS_DATE    = TO_DATE(vCbsDate, 'YYYYMMDD'))
-							ORDER BY TP_ADNL_EPI_PLAN.epi_no desc;
+								( <schema>.TP_ADNL_EPI_PLAN.row_id_epi       = <schema>.PUR_EPISODE_HDR.row_id ) AND
+								( <schema>.TP_ADNL_EPI_PLAN.revision_no      = <schema>.PUR_EPISODE_HDR.revision_no ) AND
+								( <schema>.PUR_EPISODE_HDR.pur_contract_no   = <schema>.PURCHASE_CONTRACT_HDR.pur_contract_no ) AND
+								( <schema>.PUR_EPISODE_HDR.revision_no    = <schema>.PURCHASE_CONTRACT_HDR.revision_no ) AND
+								( <schema>.TP_ADNL_EPI_PLAN.row_id_slot    = vRowIdSlot ) AND
+								( <schema>.TP_ADNL_EPI_PLAN.CHANNEL_CODE    = vChannelCode ) AND
+								( <schema>.TP_ADNL_EPI_PLAN.CBS_DATE    = TO_DATE(vCbsDate, 'YYYYMMDD'))
+							ORDER BY <schema>.TP_ADNL_EPI_PLAN.epi_no desc;
 	lc_Episode_other 	cursor for
 							SELECT 
-								DISTINCT PUR_EPISODE_HDR.FILM_EPI_TITLE
+								DISTINCT <schema>.PUR_EPISODE_HDR.FILM_EPI_TITLE
 							FROM 
-								TP_ADNL_EPI_PLAN,
-							   	PUR_EPISODE_HDR,
-							   	PURCHASE_CONTRACT_HDR
+								<schema>.TP_ADNL_EPI_PLAN,
+							   	<schema>.PUR_EPISODE_HDR,
+							   	<schema>.PURCHASE_CONTRACT_HDR
 							WHERE 
-								( TP_ADNL_EPI_PLAN.row_id_epi       = PUR_EPISODE_HDR.row_id ) AND
-								( TP_ADNL_EPI_PLAN.revision_no      = PUR_EPISODE_HDR.revision_no ) AND
-								( PUR_EPISODE_HDR.pur_contract_no   = PURCHASE_CONTRACT_HDR.pur_contract_no ) AND
-								( PUR_EPISODE_HDR.revision_no    = PURCHASE_CONTRACT_HDR.revision_no ) AND
-								( TP_ADNL_EPI_PLAN.row_id_slot    = vRowIdSlot ) AND
-								( TP_ADNL_EPI_PLAN.CHANNEL_CODE    = vChannelCode ) AND
-								( TP_ADNL_EPI_PLAN.CBS_DATE    = TO_DATE(vCbsDate, 'YYYYMMDD'));
+								( <schema>.TP_ADNL_EPI_PLAN.row_id_epi       = <schema>.PUR_EPISODE_HDR.row_id ) AND
+								( <schema>.TP_ADNL_EPI_PLAN.revision_no      = <schema>.PUR_EPISODE_HDR.revision_no ) AND
+								( <schema>.PUR_EPISODE_HDR.pur_contract_no   = <schema>.PURCHASE_CONTRACT_HDR.pur_contract_no ) AND
+								( <schema>.PUR_EPISODE_HDR.revision_no    = <schema>.PURCHASE_CONTRACT_HDR.revision_no ) AND
+								( <schema>.TP_ADNL_EPI_PLAN.row_id_slot    = vRowIdSlot ) AND
+								( <schema>.TP_ADNL_EPI_PLAN.CHANNEL_CODE    = vChannelCode ) AND
+								( <schema>.TP_ADNL_EPI_PLAN.CBS_DATE    = TO_DATE(vCbsDate, 'YYYYMMDD'));
 BEGIN 
 --		RAISE NOTICE 'enddate %', enddate;
 --	   	RAISE NOTICE 'agingdate %', agingdate;
