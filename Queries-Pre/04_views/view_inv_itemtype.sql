@@ -11,7 +11,7 @@ CREATE VIEW view_inv_itemtype AS
 			'dbname=integration port=5432 host=172.16.123.121 user=postgres password=initrans7'::text, 
 			'
 				SELECT 
-					TRIM(itemtype_id), 
+					itemtype_id, 
 					itemtype_name,
 					department_id,
 					itemtype_isdisabled

@@ -14,11 +14,11 @@ CREATE VIEW view_inv_shop AS
 			'dbname=integration port=5432 host=172.16.123.121 user=postgres password=initrans7'::text, 
 			'
 				SELECT 
-					TRIM(ms.shop_id), 
+					ms.shop_id, 
 					ms.shop_name, 
 					ms.shop_address, 
 					ms.shop_telp, 
-					TRIM(ms.shoptype_id), 
+					ms.shoptype_id, 
 					mst.shoptype_name, 
 					ms.shop_isdisabled
 				FROM 

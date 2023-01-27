@@ -11,7 +11,7 @@ CREATE VIEW view_inv_assettype AS
 			'dbname=integration port=5432 host=172.16.123.121 user=postgres password=initrans7'::text, 
 			'
 				SELECT 
-					TRIM(assettype_id), 
+					assettype_id, 
 					assettype_name,
 					assettype_desc,
 					assettype_isdisabled
