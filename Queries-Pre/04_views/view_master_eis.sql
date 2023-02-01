@@ -3,6 +3,7 @@ DROP MATERIALIZED VIEW IF EXISTS view_master_eis CASCADE;
 CREATE MATERIALIZED VIEW view_master_eis AS
 	SELECT 
 		nik,
+		nik_old,
     	"name",
 	    unit,
 	    "position",
@@ -28,6 +29,7 @@ CREATE MATERIALIZED VIEW view_master_eis AS
 		'
 			SELECT 
 				"NIK" as nik, 
+				"NIK_lama" as nik_old,
 				"Nama" as "name",
 				"Unit" as unit,
 				"Jabatan" as position,
@@ -52,6 +54,7 @@ CREATE MATERIALIZED VIEW view_master_eis AS
 				hris."MasterEis"'::text
 	) tbl (
 		nik character varying(10), 
+		nik_old character varying(10), 
 		name character varying(100), 
 		unit character varying(255), 
 		"position" character varying(100), 
