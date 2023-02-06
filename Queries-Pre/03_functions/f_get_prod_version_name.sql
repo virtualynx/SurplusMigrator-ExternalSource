@@ -8,7 +8,7 @@ BEGIN
 	select 
 		smp1.prod_version_name
   	into ls_ver_name
-	from <schema>.mt_prod1 smp1
+	from mt_prod1 smp1
 	where 
 		smp1.prod_code  = p_prod_code
 	  	and smp1.prod_version = p_version;
@@ -16,4 +16,5 @@ BEGIN
 	RETURN ls_ver_name;
 END;
 $function$
+SET search_path = <schema>
 ;
