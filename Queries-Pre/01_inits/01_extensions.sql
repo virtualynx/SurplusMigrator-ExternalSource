@@ -7,7 +7,7 @@ CREATE EXTENSION IF NOT EXISTS oracle_fdw with SCHEMA "public";
 CREATE EXTENSION IF NOT EXISTS dblink with SCHEMA "public";
 --DROP EXTENSION IF EXISTS dblink CASCADE;
 
-CREATE EXTENSION IF NOT EXISTS pgagent with SCHEMA "public";
+--CREATE EXTENSION IF NOT EXISTS pgagent with SCHEMA "public";
 --DROP EXTENSION IF EXISTS pgagent CASCADE;
 
 -- https://stackoverflow.com/questions/56733279/search-words-similarity-in-postgresql
