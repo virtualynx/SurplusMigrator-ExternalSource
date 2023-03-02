@@ -18,6 +18,9 @@ WITH DATA;
 
 -- View indexes:
 CREATE INDEX idx_view_master_brand_temp_name_gin ON view_master_brand_temp USING gin (name gin_trgm_ops);
+CREATE INDEX view_master_brand_temp_advertiserbrandid_idx ON view_master_brand_temp (advertiserbrandid);
+CREATE INDEX view_master_brand_temp_advertiserid_idx ON view_master_brand_temp (advertiserid);
+CREATE INDEX view_master_brand_temp_advertiseridadvertiserbrandid_idx ON view_master_brand_temp (advertiserid, advertiserbrandid);
 
 select 
 	vmbt.*,
