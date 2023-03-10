@@ -30,7 +30,7 @@ CREATE VIEW view_contractform AS
 					contractform_id, 
 					type.contracttype_id,
 					type.contracttype_name,
-					contractform_code,
+					trim(contractform_code),
 					contractform_artist_code,
 					contractform_artist_name,
 					show_name,
@@ -49,8 +49,8 @@ CREATE VIEW view_contractform AS
 					contractform_bank_accountnumber
 				FROM 
 					e_legal.transaction_contractform tcontract
-					join e_legal.master_worktype worktype on tcontract.worktype_id = worktype.worktype_id
-					join e_legal.master_contracttype type on tcontract.contracttype_id = type.contracttype_id
+					left join e_legal.master_worktype worktype on tcontract.worktype_id = worktype.worktype_id
+					left join e_legal.master_contracttype type on tcontract.contracttype_id = type.contracttype_id
 			'::text
 		) tbl(
 			contractformid varchar(50),
