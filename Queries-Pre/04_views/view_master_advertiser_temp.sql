@@ -16,6 +16,7 @@ CREATE materialized VIEW view_master_advertiser_temp as
 		)
 with DATA
 ;
+CREATE index idx_view_master_advertiser_temp_advertiserid ON view_master_advertiser_temp (advertiserid);
 CREATE index idx_view_master_advertiser_temp_name_gin ON view_master_advertiser_temp USING gin (name gin_trgm_ops);
 
 select 
