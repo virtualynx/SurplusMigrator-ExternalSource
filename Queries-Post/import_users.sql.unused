@@ -20,15 +20,22 @@ select
 	master_eis.nik, 
 	master_eis."name", 
 	master_eis."name", 
-	case when coalesce(TRIM(master_eis.department_code), '') <> '' then 
-		master_eis.department_code
-	else
-		case when coalesce(TRIM(master_eis.division_code), '') <> '' then 
-			master_eis.division_code
-		else
-			master_eis.directorate_code
-		end
-	end,
+	(
+		select departmentid 
+		from relation_department_surplus_hris 
+		where 
+			departmentid_hris = (
+				case when coalesce(TRIM(master_eis.department_code), '') <> '' then 
+					master_eis.department_code
+				else
+					case when coalesce(TRIM(master_eis.division_code), '') <> '' then 
+						master_eis.division_code
+					else
+						master_eis.directorate_code
+					end
+				end
+			)
+	),
 	false,
 	1,
 	1,
