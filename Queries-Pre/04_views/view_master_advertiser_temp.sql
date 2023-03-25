@@ -18,6 +18,7 @@ with DATA
 ;
 CREATE index idx_view_master_advertiser_temp_advertiserid ON view_master_advertiser_temp (advertiserid);
 CREATE index idx_view_master_advertiser_temp_name_gin ON view_master_advertiser_temp USING gin (name gin_trgm_ops);
+CREATE INDEX view_master_advertiser_temp_name_idx ON view_master_advertiser_temp USING btree (name);
 
 select 
 	vmat.*,
