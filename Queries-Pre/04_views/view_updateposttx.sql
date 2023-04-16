@@ -1,6 +1,6 @@
-DROP VIEW IF EXISTS view_updateposttx;
+DROP materialized VIEW IF EXISTS view_updateposttx;
 
-CREATE VIEW view_updateposttx AS 
+CREATE materialized VIEW view_updateposttx AS 
 	SELECT 
 		mcn.channel_name AS channel,
 		tm1.tx_code AS region,
@@ -69,4 +69,8 @@ CREATE VIEW view_updateposttx AS
 		LEFT JOIN st_pkg_int_hdr spkg ON sr1.rid_pkg_ext::text = spkg.row_id::text
 	WHERE 
 		tm1.channel_code::text = 'TV7'::text 
-		AND tm1.mo_book_status = '2'::bpchar;
+		AND tm1.mo_book_status = '2'::bpchar
+with DATA
+;
+		
+CREATE index idx_view_updateposttx_custom1 ON view_updateposttx ("month", "year");
