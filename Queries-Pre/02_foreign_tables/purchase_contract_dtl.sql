@@ -1,4 +1,4 @@
-DROP MATERIALIZED VIEW IF EXISTS purchase_contract_dtl;
+DROP MATERIALIZED VIEW IF EXISTS purchase_contract_dtl cascade;
 
 CREATE materialized VIEW purchase_contract_dtl as
 	SELECT 
