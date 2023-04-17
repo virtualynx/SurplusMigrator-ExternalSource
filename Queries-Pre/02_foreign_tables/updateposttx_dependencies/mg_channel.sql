@@ -1,4 +1,4 @@
-DROP MATERIALIZED VIEW IF EXISTS mg_channel;
+DROP MATERIALIZED VIEW IF EXISTS mg_channel cascade;
 
 CREATE materialized VIEW mg_channel as
 	SELECT 

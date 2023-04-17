@@ -1,4 +1,4 @@
-DROP MATERIALIZED VIEW IF EXISTS st_reservation_matrix1;
+DROP MATERIALIZED VIEW IF EXISTS st_reservation_matrix1 cascade;
 
 CREATE materialized VIEW st_reservation_matrix1 as
 	SELECT 

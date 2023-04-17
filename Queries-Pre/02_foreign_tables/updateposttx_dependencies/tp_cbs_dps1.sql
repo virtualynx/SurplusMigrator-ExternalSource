@@ -1,4 +1,4 @@
-DROP MATERIALIZED VIEW IF EXISTS tp_cbs_dps1;
+DROP MATERIALIZED VIEW IF EXISTS tp_cbs_dps1 cascade;
 
 CREATE materialized VIEW tp_cbs_dps1 as
 	SELECT 

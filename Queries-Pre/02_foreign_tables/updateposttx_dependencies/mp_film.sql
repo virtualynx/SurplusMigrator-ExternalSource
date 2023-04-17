@@ -1,4 +1,4 @@
-DROP MATERIALIZED VIEW IF EXISTS mp_film;
+DROP MATERIALIZED VIEW IF EXISTS mp_film cascade;
 
 CREATE materialized VIEW mp_film as
 	SELECT 

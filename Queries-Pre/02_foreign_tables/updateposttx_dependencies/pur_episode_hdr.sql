@@ -1,4 +1,4 @@
-DROP MATERIALIZED VIEW IF EXISTS pur_episode_hdr;
+DROP MATERIALIZED VIEW IF EXISTS pur_episode_hdr cascade;
 
 CREATE materialized VIEW pur_episode_hdr as
 	SELECT 

@@ -1,4 +1,4 @@
-DROP MATERIALIZED VIEW IF EXISTS st_pkg_int_hdr;
+DROP MATERIALIZED VIEW IF EXISTS st_pkg_int_hdr cascade;
 
 CREATE materialized VIEW st_pkg_int_hdr as
 	SELECT 

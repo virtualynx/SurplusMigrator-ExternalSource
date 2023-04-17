@@ -1,4 +1,4 @@
-DROP MATERIALIZED VIEW IF EXISTS mt_client;
+DROP MATERIALIZED VIEW IF EXISTS mt_client cascade;
 
 CREATE materialized VIEW mt_client as
 	SELECT 

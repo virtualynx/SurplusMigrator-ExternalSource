@@ -1,4 +1,4 @@
-DROP MATERIALIZED VIEW IF EXISTS tp_adnl_epi_plan;
+DROP MATERIALIZED VIEW IF EXISTS tp_adnl_epi_plan cascade;
 
 CREATE materialized VIEW tp_adnl_epi_plan as
 	SELECT 
