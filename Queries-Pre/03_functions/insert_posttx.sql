@@ -64,7 +64,7 @@ DECLARE
 		    ) AS ae,
 		    (select job_id from st_reservations where row_id = tm1.row_id_res) AS package,
 		    ((select agency_discount from st_reservations where row_id = tm1.row_id_res) / 100::numeric) AS discount,
-		    ((select agency_commission from st_reservations where row_id = tm1.row_id_res) / 100::numeric) AS comission,
+		    ((select agency_commission from st_reservations where row_id = tm1.row_id_res) / 100::numeric) AS commission,
 		    (select film_poc_title from mp_film where film_poc = tm1.film_poc and row_id = tm1.row_id_poc) AS programme,
 		    (
 		    	select episode 
@@ -99,6 +99,13 @@ DECLARE
 	;
 BEGIN
 	created_timestamp := current_timestamp;
+
+	-- delete old data
+	delete from "SL_Logproof"  
+	where 
+		"month" = month_date 
+		and "year" = year_date
+	;
 	
 	--open cursor
 	open cursor_data(month_date, year_date);
@@ -106,7 +113,8 @@ BEGIN
 		fetch cursor_data into record_data;
 		exit when not found;
 	
-		insert into table_update_post_tx(
+--		insert into table_update_post_tx(
+		insert into "SL_Logproof" (
 			"id",
 			"region",
 			"mo",
@@ -132,13 +140,13 @@ BEGIN
 			"ae",
 			"package",
 			"discount",
-			"comission",
+			"commission",
 			"programme",
 			"episode",
 			"version",
 			"length",
-			"brand",
-			"created_date"
+			"brand"--,
+--			"created_date"
 		) values (
 			record_data."id",
 			record_data."region",
@@ -150,7 +158,7 @@ BEGIN
 			record_data."acttime",
 			record_data."schtime",
 			record_data."schdate",
-			record_data."pos",
+			coalesce(record_data."pos", 0),
 			record_data."rate",
 			record_data."priority",
 			record_data."charge",
@@ -165,29 +173,28 @@ BEGIN
 			record_data."ae",
 			record_data."package",
 			record_data."discount",
-			record_data."comission",
+			record_data."commission",
 			record_data."programme",
 			record_data."episode",
 			record_data."version",
 			record_data."length",
-			record_data."brand",
-			created_timestamp
+			record_data."brand"--,
+--			created_timestamp
 		);
 	end loop;
 	close cursor_data;
 
 	-- delete old data
-	delete from table_update_post_tx 
-	where 
-		"month" = month_date 
-		and "year" = year_date
-		AND (
-			created_date is null
-			or created_date < created_timestamp
-		)
-	;
-   
-	commit;
+--	delete from table_update_post_tx 
+--	where 
+--		"month" = month_date 
+--		and "year" = year_date
+--		AND (
+--			created_date is null
+--			or created_date < created_timestamp
+--		)
+--	;
+--	commit;
 end;
 $procedure$
 SET search_path = <schema>

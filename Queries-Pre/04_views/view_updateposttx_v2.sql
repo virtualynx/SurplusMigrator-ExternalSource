@@ -60,7 +60,7 @@ CREATE VIEW view_updateposttx AS
 	    ) AS ae,
 	    (select job_id from st_reservations where row_id = tm1.row_id_res) AS package,
 	    ((select agency_discount from st_reservations where row_id = tm1.row_id_res) / 100::numeric) AS discount,
-	    ((select agency_commission from st_reservations where row_id = tm1.row_id_res) / 100::numeric) AS comission,
+	    ((select agency_commission from st_reservations where row_id = tm1.row_id_res) / 100::numeric) AS commission,
 	    (select film_poc_title from mp_film where film_poc = tm1.film_poc and row_id = tm1.row_id_poc) AS programme,
 	    (
 	    	select episode 
