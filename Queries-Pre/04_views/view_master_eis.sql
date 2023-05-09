@@ -77,6 +77,7 @@ CREATE MATERIALIZED VIEW view_master_eis AS
 		phk_code int
 	)
 WITH DATA;
+CREATE unique index idx_view_master_eis_unique ON view_master_eis (nik);
 
 DROP VIEW IF EXISTS view_master_eis_active;
 

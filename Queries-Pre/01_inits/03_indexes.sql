@@ -7,6 +7,7 @@ CREATE INDEX IF NOT EXISTS transaction_journal_created_date_idx ON transaction_j
 
 CREATE INDEX IF NOT EXISTS transaction_journal_detail_ref_detail_id_idx ON transaction_journal_detail USING btree (ref_detail_id);
 CREATE INDEX IF NOT EXISTS transaction_journal_detail_ref_id_idx ON transaction_journal_detail USING btree (ref_id);
+CREATE INDEX IF NOT exists transaction_journal_detail_ref_id_lower_idx ON transaction_journal_detail (lower(ref_id));
 CREATE INDEX IF NOT EXISTS transaction_journal_detail_subreference_id_idx ON transaction_journal_detail USING btree (subreference_id);
 CREATE INDEX IF NOT EXISTS transaction_journal_detail_ref_subdetail_id_idx ON transaction_journal_detail USING btree (ref_subdetail_id);
 CREATE INDEX IF NOT exists transaction_journal_detail_tjournalidaccountid_idx ON transaction_journal_detail USING btree (tjournalid, accountid);
