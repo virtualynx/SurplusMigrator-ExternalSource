@@ -13,4 +13,8 @@ CREATE INDEX IF NOT EXISTS transaction_journal_detail_ref_subdetail_id_idx ON tr
 CREATE INDEX IF NOT exists transaction_journal_detail_tjournalidaccountid_idx ON transaction_journal_detail USING btree (tjournalid, accountid);
 --CREATE INDEX IF NOT exists transaction_journal_detail__idx_01 ON transaction_journal_detail USING btree (strpos(subreference_id, 'SO'));
 
+CREATE INDEX IF NOT EXISTS transaction_advance_refid_idx ON transaction_advance USING btree (refid);
+CREATE INDEX IF NOT EXISTS transaction_advance_detail_refid_idx ON transaction_advance_detail USING btree (refid);
+CREATE INDEX IF NOT EXISTS transaction_advance_detail_ref_detailid_idx ON transaction_advance_detail USING btree (ref_detailid);
+
 CREATE INDEX IF NOT EXISTS sl_logproof_contract_idx ON "SL_Logproof" USING btree (contract);
