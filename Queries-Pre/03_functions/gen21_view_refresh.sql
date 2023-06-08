@@ -43,6 +43,15 @@ BEGIN
 
 	Raise Notice 'refresh purchase_contract_dtl ...';
 	refresh materialized view purchase_contract_dtl;
+
+	Raise Notice 'refresh view_airedprograms ...';
+	refresh materialized view view_airedprograms;
+
+	Raise Notice 'refresh mp_sch_planner ...';
+	refresh materialized view mp_sch_planner;
+
+	Raise Notice 'refresh mp_adnl_epi_plan ...';
+	refresh materialized view mp_adnl_epi_plan;
 end;
 $procedure$
 SET search_path = <schema>

@@ -24,25 +24,60 @@
 
 DROP MATERIALIZED VIEW IF EXISTS view_airedprograms;
 
+--CREATE MATERIALIZED VIEW view_airedprograms as
+--  SELECT b.row_id AS row_id_bms,
+--    b.film_poc_title AS film_bms,
+--    date_part('day', a.cbs_date)::int AS daydate,
+--    date_part('month', a.cbs_date)::int AS monthdate,
+--    date_part('year', a.cbs_date)::int AS yeardate,
+--    "substring"(a.slot_ttime, 1, 4) AS slot_ttime,
+--    "substring"(a.slot_dur_define, 1, 4) AS slot_dur_define,
+--    c.row_id_epi,
+--    c.epi_no::int,
+--    d.film_epi,
+--    d.film_epi_title,
+--    e.row_id AS row_id_cms,
+--    e.film_title AS film_cms
+--  FROM tp_cbs_dps1 a
+--    LEFT JOIN mp_film b ON b.row_id = a.row_id_poc AND b.film_poc = a.film_poc
+--    LEFT JOIN tp_adnl_epi_plan c ON c.row_id_slot = a.row_id
+--    LEFT JOIN pur_episode_hdr d ON d.row_id = c.row_id_epi
+--    LEFT JOIN purchase_contract_dtl e ON e.row_id = d.row_id_film
+--with data;
+
 CREATE MATERIALIZED VIEW view_airedprograms as
-  SELECT b.row_id AS row_id_bms,
-    b.film_poc_title AS film_bms,
-    date_part('day', a.cbs_date) AS daydate,
-    date_part('month', a.cbs_date) AS monthdate,
-    date_part('year', a.cbs_date) AS yeardate,
-    "substring"(a.slot_ttime, 1, 4) AS slot_ttime,
-    "substring"(a.slot_dur_define, 1, 4) AS slot_dur_define,
-    c.row_id_epi,
-    c.epi_no,
-    d.film_epi,
-    d.film_epi_title,
-    e.row_id AS row_id_cms,
-    e.film_title AS film_cms
-  FROM tp_cbs_dps1 a
-    LEFT JOIN mp_film b ON b.row_id = a.row_id_poc AND b.film_poc = a.film_poc
-    LEFT JOIN tp_adnl_epi_plan c ON c.row_id_slot = a.row_id
-    LEFT JOIN pur_episode_hdr d ON d.row_id = c.row_id_epi
-    LEFT JOIN purchase_contract_dtl e ON e.row_id = d.row_id_film
+	SELECT 
+		distinct on (
+			b.row_id,
+			b.film_poc_title,
+			date_part('day', a.cbs_date)::int,
+			date_part('month', a.cbs_date)::int,
+			date_part('year', a.cbs_date)::int,
+			"substring"(a.slot_ttime, 1, 4)
+		)
+--		(b.row_id || '-' || to_char(a.cbs_date, 'YYYYMMDD') || '-' || "substring"(a.slot_ttime, 1, 4))::varchar(35) as aired_id,
+		b.row_id AS row_id_bms,
+		b.film_poc_title AS film_bms,
+		date_part('day', a.cbs_date)::int AS daydate,
+		date_part('month', a.cbs_date)::int AS monthdate,
+		date_part('year', a.cbs_date)::int AS yeardate,
+		"substring"(a.slot_ttime, 1, 4) AS slot_ttime,
+		"substring"(a.slot_dur_define, 1, 4) AS slot_dur_define,
+		c.row_id_epi,
+		c.epi_no::int,
+		d.film_epi,
+		d.film_epi_title,
+		e.row_id AS row_id_cms,
+		e.film_title AS film_cms
+	FROM 
+		tp_cbs_dps1 a
+		LEFT JOIN mp_film b ON b.row_id = a.row_id_poc AND b.film_poc = a.film_poc
+		LEFT JOIN tp_adnl_epi_plan c ON c.row_id_slot = a.row_id
+		LEFT JOIN pur_episode_hdr d ON d.row_id = c.row_id_epi
+		LEFT JOIN purchase_contract_dtl e ON e.row_id = d.row_id_film
 with data;
+
+--CREATE index idx_view_airedprograms ON view_airedprograms (aired_id);
+CREATE index idx_view_airedprograms_bmsyear ON view_airedprograms (row_id_bms asc, yeardate desc);
 
 REFRESH MATERIALIZED view view_airedprograms with data;
