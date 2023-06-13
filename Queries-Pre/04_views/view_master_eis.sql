@@ -23,7 +23,8 @@ CREATE MATERIALIZED VIEW view_master_eis AS
 		bankaccount_number,
 		bankaccount_name,
 		phk_date,
-		phk_code
+		phk_code,
+		allobank_no,		allobank_nama
 	FROM dblink(
 		'dbname=integration port=5432 host=172.16.123.121 user=postgres password=initrans7'::text, 
 		'
@@ -49,7 +50,9 @@ CREATE MATERIALIZED VIEW view_master_eis AS
 				"rekening_no",
 				"rekening_nama",
 				"TanggalPHK",
-				"KodePHK"
+				"KodePHK",
+				"allobank_no",
+				"allobank_nama"
 			FROM 
 				hris."MasterEis"'::text
 	) tbl (
@@ -74,7 +77,9 @@ CREATE MATERIALIZED VIEW view_master_eis AS
 		bankaccount_number character varying(50),
 		bankaccount_name character varying(50),
 		phk_date date,
-		phk_code int
+		phk_code int,
+		allobank_no character varying(25),
+		allobank_nama character varying(100)
 	)
 WITH DATA;
 CREATE unique index idx_view_master_eis_unique ON view_master_eis (nik);
