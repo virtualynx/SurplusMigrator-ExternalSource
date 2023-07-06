@@ -2,7 +2,7 @@ DROP VIEW IF EXISTS view_updateposttx;
 
 CREATE VIEW view_updateposttx AS 
 	SELECT 
-	    (tm1.mo_no || '-' || LPAD(tm1.spotnum::text, 5, '0'))::varchar(100) AS id,
+	    (tm1.mo_no || '-' || LPAD(tm1.spotnum::text, 5, '0') || '-' || mv.prodg_code1)::varchar(100) AS id,
 	    tm1.tx_code AS region,
 	    tm1.po_number AS mo,
 	    tm1.mo_no AS contract,
@@ -39,7 +39,7 @@ CREATE VIEW view_updateposttx AS
 	        END
 	    )::text AS logstatus,
 	    NULL::text AS error,
-	    tm1.mo_dpp_home AS netsales,
+	    tm1.mo_dpp_home::numeric AS netsales,
 	    to_char(tm1.mo_book_date, 'mm')::int AS "month",
 	    to_char(tm1.mo_book_date, 'yyyy')::int AS "year",
 	    (select channel_name from mg_channel where channel_code = tm1.channel_code) AS channel,
@@ -82,11 +82,14 @@ CREATE VIEW view_updateposttx AS
 	        SELECT mt_prod.prod_name
 	        FROM mt_prod
 	        WHERE mt_prod.prod_code = mp1.prod_code
-	    ) AS brand
+	    ) AS brand,
+		mpg.prodg_name
 	FROM 
 	    tt_mo1 tm1
 	    LEFT JOIN tp_cbs_dps1 tcd1 ON tm1.row_id_slot = tcd1.row_id
 	    LEFT JOIN mt_prod1 mp1 ON tm1.prod_code = mp1.prod_code AND tm1.prod_version = mp1.prod_version
+	    join _live.mt_versiong mv on mp1.row_id = mv.rid_version
+	    join _live.mt_prodg mpg on mv.prodg_code = mpg.prodg_code
 	WHERE 
 		tm1.mo_book_status = '2'
 	    and tm1.channel_code = 'TV7'

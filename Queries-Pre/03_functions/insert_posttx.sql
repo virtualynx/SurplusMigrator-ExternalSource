@@ -6,7 +6,7 @@ DECLARE
 	record_data record;
 	cursor_data cursor(month_date int, year_date int) for
 		 SELECT 
-		    (tm1.mo_no || '-' || LPAD(tm1.spotnum::text, 5, '0'))::varchar(100) AS id,
+		    (tm1.mo_no || '-' || LPAD(tm1.spotnum::text, 5, '0') || '-' || mv.prodg_code1)::varchar(100) AS id,
 		    tm1.tx_code AS region,
 		    tm1.po_number AS mo,
 		    tm1.mo_no AS contract,
@@ -43,7 +43,7 @@ DECLARE
 		        END
 		    )::text AS logstatus,
 		    NULL::text AS error,
-		    tm1.mo_dpp_home AS netsales,
+		    tm1.mo_dpp_home::decimal AS netsales,
 		    to_char(tm1.mo_book_date, 'mm')::int AS "month",
 		    to_char(tm1.mo_book_date, 'yyyy')::int AS "year",
 		    (select channel_name from mg_channel where channel_code = tm1.channel_code) AS channel,
@@ -86,11 +86,14 @@ DECLARE
 		        SELECT mt_prod.prod_name
 		        FROM mt_prod
 		        WHERE mt_prod.prod_code = mp1.prod_code
-		    ) AS brand
+		    ) AS brand,
+    		mpg.prodg_name
 		FROM 
 		    tt_mo1 tm1
 		    LEFT JOIN tp_cbs_dps1 tcd1 ON tm1.row_id_slot = tcd1.row_id
 		    LEFT JOIN mt_prod1 mp1 ON tm1.prod_code = mp1.prod_code AND tm1.prod_version = mp1.prod_version
+		    JOIN _live.mt_versiong mv ON mp1.row_id::text = mv.rid_version::text
+     		JOIN _live.mt_prodg mpg ON mv.prodg_code::text = mpg.prodg_code::text
 		WHERE 
 			date_part('year', tm1.mo_book_date) = year_date
 		    and date_part('month', tm1.mo_book_date) = month_date
@@ -145,8 +148,9 @@ BEGIN
 			"episode",
 			"version",
 			"length",
-			"brand"--,
+			"brand",
 --			"created_date"
+			"prodg_name"
 		) values (
 			record_data."id",
 			record_data."region",
@@ -178,8 +182,9 @@ BEGIN
 			record_data."episode",
 			record_data."version",
 			record_data."length",
-			record_data."brand"--,
+			record_data."brand",
 --			created_timestamp
+			record_data."prodg_name"
 		);
 	end loop;
 	close cursor_data;
