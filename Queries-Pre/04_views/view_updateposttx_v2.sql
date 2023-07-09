@@ -1,6 +1,6 @@
-DROP VIEW IF EXISTS view_updateposttx;
+DROP MATERIALIZED VIEW IF EXISTS view_updateposttx;
 
-CREATE VIEW view_updateposttx AS 
+CREATE MATERIALIZED VIEW view_updateposttx AS 
 	SELECT 
 	    (tm1.mo_no || '-' || LPAD(tm1.spotnum::text, 5, '0') || '-' || mv.prodg_code1)::varchar(100) AS id,
 	    tm1.tx_code AS region,
@@ -91,6 +91,10 @@ CREATE VIEW view_updateposttx AS
 	    join _live.mt_versiong mv on mp1.row_id = mv.rid_version
 	    join _live.mt_prodg mpg on mv.prodg_code = mpg.prodg_code
 	WHERE 
-		tm1.mo_book_status = '2'
+		(current_date - interval '1' year) <= tm1.mo_book_date
+		and tm1.mo_book_status = '2'
 	    and tm1.channel_code = 'TV7'
 ;
+
+CREATE unique index idx_view_updateposttx_unique ON view_updateposttx (id);
+CREATE index idx_view_updateposttx_year_month ON view_updateposttx ("year" desc, "month" desc);
