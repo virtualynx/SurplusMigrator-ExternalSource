@@ -1,73 +1,150 @@
-insert into "AspNetUsers"(
-	id,
-	nik,
-	fullname,
-	username,
-	departmentid,
-	isdisabled,
-	occupationid,
-	usergroupid,
-	emailconfirmed,
-	phonenumberconfirmed,
-	twofactorenabled,
-	lockoutenabled,
-	accessfailedcount,
-	email,
-	phonenumber
-)
-select 
-	uuid_generate_v4(),
-	master_eis.nik, 
-	master_eis."name", 
-	master_eis."name", 
-	(
-		select departmentid 
-		from relation_department_surplus_hris 
-		where 
-			departmentid_hris = (
-				case when coalesce(TRIM(master_eis.department_code), '') <> '' then 
-					master_eis.department_code
-				else
-					case when coalesce(TRIM(master_eis.division_code), '') <> '' then 
-						master_eis.division_code
-					else
-						master_eis.directorate_code
-					end
-				end
+do $$
+	declare _nik_list varchar[] = ARRAY[]::varchar[];
+begin
+	drop table if exists temp_master_eis;
+	create temp table temp_master_eis as
+		select *
+		from 
+			dblink(
+			'dbname=integration port=5432 host=172.16.123.121 user=postgres password=initrans7'::text, 
+			'
+				SELECT 
+					"NIK" as nik, 
+					"Nama" as name,
+					department_code,
+					division_code,
+					directorate_code,
+					email,
+					"NomorHP" as phone
+				FROM 
+					hris."MasterEisAktif"
+			'::text
+			) master_eis (
+				nik character varying(10), 
+				"name" character varying(100), 
+				department_code character varying(50), 
+				division_code character varying(50), 
+				directorate_code character varying(50), 
+				email character varying(200), 
+				phone character varying(25)
 			)
-	),
-	false,
-	1,
-	1,
-	false,
-	false,
-	false,
-	false,
-	0,
-	master_eis.email, 
-	master_eis.phone
-from 
-	dblink(
-		'dbname=integration port=5432 host=172.16.123.121 user=postgres password=initrans7'::text, 
-		'
-			SELECT 
-				"NIK" as nik, 
-				"Nama" as name,
-				department_code,
-				division_code,
-				directorate_code,
-				email,
-				"NomorHP" as phone
-			FROM 
-				hris."MasterEisAktif"
-		'::text
-	) master_eis (
-		nik character varying(10), 
-		"name" character varying(100), 
-		department_code character varying(50), 
-		division_code character varying(50), 
-		directorate_code character varying(50), 
-		email character varying(200), 
-		phone character varying(25)
+	;
+
+	drop table if exists temp_master_eis2;
+	create temp table if not exists temp_master_eis2 as
+		select 
+			nik, 
+			name,
+			email,
+			phone,
+			(
+				case 
+				when coalesce(TRIM(department_code), '') <> '' then 
+					department_code
+				when coalesce(TRIM(division_code), '') <> '' then 
+					division_code
+				else
+					directorate_code
+				end
+			) as department_code
+		from 
+			temp_master_eis
+	;
+
+	drop table if exists temp_master_eis3;
+	create temp table if not exists temp_master_eis3 as
+		select 
+			eis.nik, 
+			eis.name,
+			eis.email,
+			eis.phone,
+			rdsh.departmentid
+		from 
+			temp_master_eis eis
+			join relation_department_surplus_hris rdsh on rdsh.departmentid_hris = eis.department_code
+	;
+
+	drop table if exists temp_master_eis_final;
+	create temp table if not exists temp_master_eis_final as
+		(
+			select *
+			from temp_master_eis3
+			where 
+				case 
+				when array_length(_nik_list, 1) > 0 then 
+					false
+				else 
+					true 
+				end
+		)
+		union all
+		(
+			select *
+			from temp_master_eis3
+			where nik = any(_nik_list)
+		)
+	;
+	
+	insert into "AspNetUsers"(
+		id,
+		nik,
+		fullname,
+		username,
+		departmentid,
+		isdisabled,
+		occupationid,
+		usergroupid,
+		emailconfirmed,
+		phonenumberconfirmed,
+		twofactorenabled,
+		lockoutenabled,
+		accessfailedcount,
+		email,
+		phonenumber
 	)
-;
+	select 
+		uuid_generate_v4(),
+		master_eis.nik, 
+		master_eis."name", 
+		master_eis."name", 
+		master_eis.departmentid, 
+		false,
+		1,
+		1,
+		false,
+		false,
+		false,
+		false,
+		0,
+		master_eis.email, 
+		master_eis.phone
+	from 
+		temp_master_eis_final master_eis
+	;
+
+	insert into relation_user_usergroup (
+		userid,
+		usergroupid,
+		is_disabled
+	)
+	select 
+		nik,
+		1,
+		false
+	from temp_master_eis_final
+	;
+
+	insert into relation_user_department (
+		nik,
+		departmentid,
+		created_date,
+		is_disabled
+	)
+	select 
+		nik,
+		departmentid,
+		now(),
+		false
+	from temp_master_eis_final
+	;
+end $$;
