@@ -519,5 +519,6 @@ with DATA
 --CREATE index idx_tt_mo1_custom3 ON tt_mo1 (channel_code, mo_book_status, date_part('month', mo_book_date), date_part('year', mo_book_date));
 --CREATE index idx_tt_mo1_custom4 ON tt_mo1 ( (tm1.mo_no || '-' || LPAD(tm1.spotnum::text, 5, '0')) );
 CREATE index idx_tt_mo1_custom5 ON tt_mo1 (date_part('year', mo_book_date) desc, date_part('month', mo_book_date) desc, mo_book_status, channel_code);
+CREATE index idx_tt_mo1_custom6 ON tt_mo1 (mo_book_date desc, mo_book_status, channel_code);
 CREATE index idx_tt_mo1_row_id_slot ON tt_mo1 (row_id_slot);
 CREATE unique index idx_tt_mo1_unique ON tt_mo1 (mo_no, spotnum);

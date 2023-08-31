@@ -18,3 +18,9 @@ CREATE INDEX IF NOT EXISTS transaction_advance_detail_refid_idx ON transaction_a
 CREATE INDEX IF NOT EXISTS transaction_advance_detail_ref_detailid_idx ON transaction_advance_detail USING btree (ref_detailid);
 
 CREATE INDEX IF NOT EXISTS sl_logproof_contract_idx ON "SL_Logproof" USING btree (contract);
+
+CREATE INDEX IF NOT EXISTS transaction_payment_planning_detail_ref_id_idx ON transaction_payment_planning_detail USING btree (ref_id);
+CREATE INDEX IF NOT EXISTS transaction_payment_planning_detail_ref_detail_id_idx ON transaction_payment_planning_detail USING btree (ref_detail_id);
+
+CREATE INDEX IF NOT EXISTS transaction_journal_detail_ref_supplydetail_id_idx ON transaction_journal_detail USING btree (ref_supplydetail_id);
+CREATE INDEX IF NOT EXISTS transaction_journal_detail_ref_supply_id_idx ON transaction_journal_detail USING btree (ref_supply_id);

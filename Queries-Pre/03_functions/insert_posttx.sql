@@ -6,7 +6,8 @@ DECLARE
 	record_data record;
 	cursor_data cursor(month_date int, year_date int) for
 		 SELECT 
-		    (tm1.mo_no || '-' || LPAD(tm1.spotnum::text, 5, '0') || '-' || mv.prodg_code1)::varchar(100) AS id,
+--		    (tm1.mo_no || '-' || LPAD(tm1.spotnum::text, 5, '0') || '-' || mv.prodg_code1)::varchar(100) AS id,
+		    (tm1.mo_no || '-' || LPAD(tm1.spotnum::text, 5, '0'))::varchar(100) AS id,
 		    tm1.tx_code AS region,
 		    tm1.po_number AS mo,
 		    tm1.mo_no AS contract,
@@ -87,13 +88,22 @@ DECLARE
 		        FROM mt_prod
 		        WHERE mt_prod.prod_code = mp1.prod_code
 		    ) AS brand,
-    		mpg.prodg_name
+--			mpg.prodg_name
+		    (
+		    	SELECT 
+		    		string_agg(mpg.prodg_name, ', ' order by mpg.prodg_name)
+		        FROM 
+--	        		mt_versiong mv
+	        		(select distinct on(rid_version, prodg_code) * from mt_versiong) as mv
+		        	JOIN mt_prodg mpg ON mpg.prodg_code = mv.prodg_code
+		        WHERE mv.rid_version = mp1.row_id
+		    ) as prodg_name
 		FROM 
 		    tt_mo1 tm1
 		    LEFT JOIN tp_cbs_dps1 tcd1 ON tm1.row_id_slot = tcd1.row_id
 		    LEFT JOIN mt_prod1 mp1 ON tm1.prod_code = mp1.prod_code AND tm1.prod_version = mp1.prod_version
-		    JOIN _live.mt_versiong mv ON mp1.row_id::text = mv.rid_version::text
-     		JOIN _live.mt_prodg mpg ON mv.prodg_code::text = mpg.prodg_code::text
+--		    JOIN _live.mt_versiong mv ON mp1.row_id::text = mv.rid_version::text
+--     		JOIN _live.mt_prodg mpg ON mv.prodg_code::text = mpg.prodg_code::text
 		WHERE 
 			date_part('year', tm1.mo_book_date) = year_date
 		    and date_part('month', tm1.mo_book_date) = month_date
