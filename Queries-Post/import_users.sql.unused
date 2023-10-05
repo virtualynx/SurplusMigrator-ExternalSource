@@ -60,7 +60,7 @@ begin
 			eis.phone,
 			rdsh.departmentid
 		from 
-			temp_master_eis eis
+			temp_master_eis2 eis
 			join relation_department_surplus_hris rdsh on rdsh.departmentid_hris = eis.department_code
 	;
 

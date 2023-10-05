@@ -342,6 +342,10 @@ CREATE materialized VIEW tt_mo1 as
 					prem_pos_lock,
 					cancelporeceive
 				FROM gen21.tt_mo1
+				WHERE
+	   				(CURRENT_DATE - ''1 year''::interval year) <= mo_book_date 
+					AND mo_book_status = ''2''
+					AND channel_code::text = ''TV7''
 			'
    		) tbl(
 			channel_code varchar(3),

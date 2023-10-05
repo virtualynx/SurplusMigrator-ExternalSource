@@ -88,22 +88,11 @@ DECLARE
 		        FROM mt_prod
 		        WHERE mt_prod.prod_code = mp1.prod_code
 		    ) AS brand,
---			mpg.prodg_name
-		    (
-		    	SELECT 
-		    		string_agg(mpg.prodg_name, ', ' order by mpg.prodg_name)
-		        FROM 
---	        		mt_versiong mv
-	        		(select distinct on(rid_version, prodg_code) * from mt_versiong) as mv
-		        	JOIN mt_prodg mpg ON mpg.prodg_code = mv.prodg_code
-		        WHERE mv.rid_version = mp1.row_id
-		    ) as prodg_name
+		    mp1.row_id
 		FROM 
 		    tt_mo1 tm1
 		    LEFT JOIN tp_cbs_dps1 tcd1 ON tm1.row_id_slot = tcd1.row_id
 		    LEFT JOIN mt_prod1 mp1 ON tm1.prod_code = mp1.prod_code AND tm1.prod_version = mp1.prod_version
---		    JOIN _live.mt_versiong mv ON mp1.row_id::text = mv.rid_version::text
---     		JOIN _live.mt_prodg mpg ON mv.prodg_code::text = mpg.prodg_code::text
 		WHERE 
 			date_part('year', tm1.mo_book_date) = year_date
 		    and date_part('month', tm1.mo_book_date) = month_date
@@ -112,6 +101,20 @@ DECLARE
 	;
 BEGIN
 	created_timestamp := current_timestamp;
+
+	-- create map for product-category
+	drop table if exists temp_category;
+	create temp table if not exists temp_category as
+		SELECT 
+			mv.rid_version ,
+    		string_agg(mpg.prodg_name, ';' order by mpg.prodg_name) as prodg_name
+        FROM 
+    		(select distinct on(rid_version, prodg_code) * from mt_versiong) as mv
+        	JOIN mt_prodg mpg ON mpg.prodg_code = mv.prodg_code
+        group by mv.rid_version
+	;
+	CREATE INDEX temp_category_idx on temp_category(rid_version);
+--	analyze temp_category;
 
 	-- delete old data
 	delete from "SL_Logproof"  
@@ -194,7 +197,7 @@ BEGIN
 			record_data."length",
 			record_data."brand",
 --			created_timestamp
-			record_data."prodg_name"
+			(select prodg_name from temp_category where rid_version = record_data."row_id")
 		);
 	end loop;
 	close cursor_data;
