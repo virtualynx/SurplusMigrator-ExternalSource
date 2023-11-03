@@ -85,15 +85,16 @@ CREATE MATERIALIZED VIEW view_updateposttx AS
 	        WHERE mt_prod.prod_code = mp1.prod_code
 	    ) AS brand,
 --		mpg.prodg_name
-	    (
-	    	SELECT 
-	    		string_agg(mpg.prodg_name, ', ' order by mpg.prodg_name)
-	        FROM 
---	        	mt_versiong mv
-	        	(select distinct on(rid_version, prodg_code) * from mt_versiong) as mv
-	        	JOIN mt_prodg mpg ON mpg.prodg_code = mv.prodg_code
-	        WHERE mv.rid_version = mp1.row_id
-	    ) as prodg_name
+--	    (
+--	    	SELECT 
+--	    		string_agg(mpg.prodg_name, ', ' order by mpg.prodg_name)
+--	        FROM 
+----	        	mt_versiong mv
+--	        	(select distinct on(rid_version, prodg_code) * from mt_versiong) as mv
+--	        	JOIN mt_prodg mpg ON mpg.prodg_code = mv.prodg_code
+--	        WHERE mv.rid_version = mp1.row_id
+--	    ) as prodg_name,
+	    null AS prodg_name
 	FROM 
 	    tt_mo1 tm1
 	    LEFT JOIN tp_cbs_dps1 tcd1 ON tm1.row_id_slot = tcd1.row_id
