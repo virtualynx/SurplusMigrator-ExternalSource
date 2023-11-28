@@ -1,5 +1,6 @@
 do $$
 	declare _nik_list varchar[] = ARRAY[]::varchar[];
+	declare _usergroup int = 3; 
 begin
 	drop table if exists temp_master_eis;
 	create temp table temp_master_eis as
@@ -110,7 +111,7 @@ begin
 		master_eis.departmentid, 
 		false,
 		1,
-		1,
+		_usergroup,
 		false,
 		false,
 		false,
@@ -129,7 +130,7 @@ begin
 	)
 	select 
 		nik,
-		1,
+		_usergroup,
 		false
 	from temp_master_eis_final
 	;
